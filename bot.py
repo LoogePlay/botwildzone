@@ -1,7 +1,5 @@
 import telebot
 import config
-import random
-
 from telebot import types
 
 
@@ -28,6 +26,7 @@ def calendar(message):
             bot.send_photo(message.chat.id, pho)
         if message.text == 'Просмотреть задачи':
             bot.send_message(message.chat.id, "{0.first_name}.\nCлушай пока для тебя задач нет".format(message.from_user, bot.get_me()), parse_mode="html")
-
+        if message.text == 'Личный ToDо лист':
+            bot.send_message(message.chat.id, '{0.first_name}!\tТвой ToDo лист готов!\nlocalhost:3000'.format(message.from_user, bot.get_me()), parse_mode="html")
 
 bot.polling(none_stop=True)

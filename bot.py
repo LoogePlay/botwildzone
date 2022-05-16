@@ -1,6 +1,7 @@
 import telebot
 import config
 from telebot import types
+# from naked.toolshed.shell import execute_js, muterun_js
 
 
 bot = telebot.TeleBot(config.TOKEN)
@@ -14,7 +15,11 @@ def welcome(message):
 
     markup.add(item1, item2, item3)
 
-    bot.send_message(message.chat.id, 'Добро пожаловать в телерам бота WZ Studio, мы рады приветствовать тебя {0.first_name}!\nЯ - Генадий, с любыми вопросами приходи ко мне или пиши кожанным ублюдкам которые создали меня @TumaH7 @Alive_0utside'.format(message.from_user, bot.get_me()), parse_mode="html", reply_markup=markup)
+    bot.send_message(message.chat.id, 'Добро пожаловать в телерам бота WZ Studio, мы рады приветствовать тебя '
+                                      '{0.first_name}!'
+                                      '\nЯ - Генадий, с любыми вопросами приходи ко мне или пиши кожанным ублюдкам'
+                                      ' которые создали меня @TumaH7 @Alive_0utside'.format(message.from_user,
+                                                        bot.get_me()), parse_mode="html", reply_markup=markup)
 
 @bot.message_handler(content_types=['text'])
 def calendar(message):
@@ -25,8 +30,11 @@ def calendar(message):
             pho = open('static/Frame 1.png', 'rb')
             bot.send_photo(message.chat.id, pho)
         if message.text == 'Просмотреть задачи':
-            bot.send_message(message.chat.id, "{0.first_name}.\nCлушай пока для тебя задач нет".format(message.from_user, bot.get_me()), parse_mode="html")
+            bot.send_message(message.chat.id, "{0.first_name}.\nCлушай пока для тебя задач нет".format(message.from_user
+                                                                                                       ,bot.get_me()),
+                                                                                                    parse_mode="html")
         if message.text == 'Личный ToDо лист':
-            bot.send_message(message.chat.id, '{0.first_name}!\tТвой ToDo лист готов!\nlocalhost:3000'.format(message.from_user, bot.get_me()), parse_mode="html")
+            bot.send_message(message.chat.id, '{0.first_name}!\tТвой ToDo лист готов!\n<a href="vk.com">ТЫкни!</a>'
+                             .format(message.from_user, bot.get_me()), parse_mode="html")
 
 bot.polling(none_stop=True)
